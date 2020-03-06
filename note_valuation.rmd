@@ -1,0 +1,224 @@
+---
+title: "Fix Income Securities Formula Sheet"
+author: "Alex Dou"
+date: "March 10, 2019"
+output:
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+### Discounted Cash Flow Approach
+
+$$ P=\sum_{t=1}^{n}{\frac{C_t}{(1+r)^t} + \frac{FV}{(1+r)^n}} $$
+
+
+----
+
+### Discount factor
+
+$$ P=\sum_{t=1}^{n}{d(t)CF_t} $$
+
+
+----
+
+
+### Compounding frequencies
+
+$$ FV_n=PV_0(1+\frac{r}{m})^{mn} $$
+
+$$R_c = m ln(1+\frac{R_m}{m})$$
+
+$$ R_m=m(e^{\frac{R_c}{m}}-1)  $$
+
+----
+
+
+### Annuity Factor
+
+$$ P_n=A[\frac{(1+r)^n-1}{r}]  $$
+
+$$ PV=A[\frac{1-\frac{1}{(1+r)^n}}{r}]  $$
+
+$$ A_T=\sum_{t=1}^{2n}{d(\frac{t}{2})} $$
+
+
+$$ Perpetuity=\frac{C}{y}$$
+
+
+
+----
+
+### Spot Rate and Discount Factor
+
+$$ d(t)=\frac{1}{(1+\frac{z(t)}{2})^{2t}}   $$
+
+
+----
+
+### Pricing bonds with spot rate
+
+$$ P=\sum_{t=1}^{n}{\frac{C}{(1+Z_t)^t} + \frac{FV}{(1+Z_n)^n}}  $$
+
+
+----
+
+### Forward rates and spot rates
+
+$$ (1+Z_{t1})^{t1}(1+IFR_{t1,t2})^{t2-t1} = (1+Z_{t2})^{t2}   $$
+
+$$ r_{12} = \frac{r_{02}t_{02}-r_{01}t_{01}}{t_{02}-t_{01}}  $$
+
+
+----
+
+### Par Rate
+
+$$ \frac{c}{2}\sum_{t=1}^{2t}{d(\frac{t}{2})}+d(T)=1 $$
+
+----
+
+### Yield to Maturity
+$$ P=\sum_{t=1}^{n}{\frac{PMT_t}{(1+YTM)^t} + \frac{FV}{(1+FTM)^n}} $$
+
+
+
+----
+
+### Full Price
+$$ Full price=[\sum_{t=1}^{n}{\frac{PMT_t}{(1+r)^t} + \frac{FV}{(1+r)^n}}](1+r)^{\frac{t}{T}} $$
+
+
+----
+
+### Spread of Bond
+
+$$ P=\sum_{t=1}^{n}{\frac{CF_t}{(1+Z_t+Spread)^t}} $$
+
+
+----
+
+### Macaulay Duration
+
+$$ MacDur = \frac{\sum_{t=1}^{n}{t*PVCF_t}}{\sum{PVCF_t}}$$
+
+
+----
+
+### Modified Duration
+
+$$ D^* = ModDur=-\frac{\Delta{\%P}}{\Delta{y}} = \frac{MacDur}{1+\frac{r}{m}} $$
+
+$$ \frac{\Delta{P}}{P} = D^*\Delta{y} $$
+
+----
+
+### Effective Duration
+
+$$ EffectiveDur = \frac{P_{-\Delta{y}}-P_{+\Delta{y}}}{2P_0\Delta{y}}  $$
+
+----
+
+### DV01
+
+$$ DV01 = D*P*{0.01\%} $$
+$$ \Delta{y}=1bp $$
+
+$$ DV01=\frac{P_{-1bp}-P_{+1bp}}{2}  $$
+
+----
+
+### Duration hedge
+
+$$ -\frac{V_pD_p}{V_hD_h}$$
+
+----
+
+
+### DV01 Hedging
+
+$$ HedgeRatio= -\frac{DV01(UnderlyingAsset)}{DV01(Hedging Instrument)} $$
+
+----
+
+### Convexity 
+
+$$ Convexity = \frac{1}{P}\frac{d^2P}{dy^2}$$
+
+$$ Convexity \approx \frac{P_{-\Delta{y}}+P_{+\Delta{y}}-2P_0}{P_0\Delta{y}^2} $$
+
+$$ \Delta{\%P}  \approx -D*\Delta{y} + \frac{1}{2} Convexity (\Delta{y})^2   $$
+
+----
+
+### Key Rate Duration and Key rate 01
+
+$$ D^k = - \frac{\Delta{\%P}}{\Delta{y}^k} $$
+
+$$ DV01^k = - \frac{1}{10000} \frac{\Delta{P}}{\Delta{y}^k} $$
+
+
+
+----
+
+### Portfolio Duration and Convexity
+
+$$ D_p = \sum_{i=1}^{n}{w_iD_i} $$
+
+$$ Convexity_p = \sum_{i=1}^{n}{w_iC_i} $$
+
+$$ DV01_p =\sum{DV01_i}$$
+
+### FRA
+
+#### Cash flow
+
+$$ C_{FRA}=L(R_k-R_m)(T_2-T_1) $$
+
+$$ CPV_{FRA} =\frac{L(R_k-R_m)(T_2-T_1)}{1+R_m(T_2-T_1)} $$
+
+#### Pricing
+
+$$V_{FRA}=L(R_k-R_f)(T_2-T_1)e^{-r_2t_2}$$
+
+### Interest Rate Futures
+
+$$ P_{cash} = P_{quoted} + AI $$
+
+#### Cheapest-to-Deliver Bond  
+Bond with minimal 
+
+$$ B_{quoted} - (F_{quoted} \times CF)   $$
+
+$$ CF = \frac{B_{discounted} - AI}{FV}$$
+
+#### Treasury bond futures price
+$$ F_0=(S_0-I)e^{rt}  $$
+
+$$ B_{dirty} = F \times CF+AI $$
+
+#### T Bill
+**n** days to maturity and a cash price of **Y**
+$$ P=\frac{360}{n}(100-Y)  $$
+
+#### Euro-dollar
+
+**Z** is quoted price of a eurodollar futures contract
+
+$$LIBOR_{farword} = 100-Z$$
+
+$$ 10000[100-0.25(100-Z)] $$
+
+$$ V_{1bp} = 25USD $$
+
+### Swap
+
+#### Value of Swap
+$$ V_{swap} = B_{fix} - B_{float}  $$
+
+$$ B_{float} = (L+K)e^{-rt}  $$
+
+$$ V_{swap} = B_d-B_f S_0  $$

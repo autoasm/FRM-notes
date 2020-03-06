@@ -1,0 +1,83 @@
+---
+title: "Risk Fundation Formula Sheet"
+author: "Alex Dou"
+date: "March 10, 2019"
+output:
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+### Regression
+
+$$ \beta_1 = \frac{Cov(x, y)}{\sigma_x^2}  $$
+
+
+### Risk Utility curve
+
+$$ U=E(r) - \frac{1}{2}A\sigma^2   $$
+
+
+### Capital allocation line
+
+$$ E(r_p) = r_f+[\frac{E(r_x)-r_f}{\sigma_x}]\sigma_p  $$
+
+### Capital Market Line
+
+$$ E(r_p) = r_f + [\frac{E(r_m)-r_f}{\sigma_m}]\sigma_p  $$
+
+### CAPM
+
+$$\beta_i = \frac{Conv(i, m)}{\sigma_m^2} = \rho_{i,m}\frac{\sigma_i}{\sigma_m}{}$$
+
+$$ E(r_i) = r_f + \beta_i[E(r_m)-r_f]  $$
+
+$$ \beta_p = \sum{w_i\beta_i}  $$
+
+### Performance Measurement
+
+#### Sharpe Ratio
+
+$$ S_p=\frac{E(r_p)-r_f}{\sigma_p}  $$
+
+#### Treynor Ratio
+
+$$ T_p=\frac{E(r_p)-r_f}{\beta_p}  $$
+
+
+#### Jensen's Alpha
+
+$$ \alpha_p = E(r_p) - r_{capm}  $$
+
+#### Sortino Ratio
+
+$$ SOR=\frac{E(r_p)-MAR}{SSD}  $$
+
+
+#### Tracking error
+
+$$TE=\sigma{(r_p-r_b)}$$
+
+
+#### Information Ratio
+
+$$ IR=\frac{E(r_p)-E(r_b)}{\sigma_{(r_p-r_b)}}  $$
+
+
+### Multi-factor Model
+
+$$ r_i = E(r_i) + \sum_{j=1}^{n}{\beta_{i,j}F_j} + \epsilon_i $$
+
+
+### APT
+
+$$ E(r_p) = r_f + \sum{\beta_i\lambda_i}  $$
+
+
+#### Fama-French model
+
+$$ r  = r_f + \alpha + \beta_m{(r_m-r_f)} + \beta_{smb}{SMB} + \beta_{hml}{HML} + \epsilon  $$
+

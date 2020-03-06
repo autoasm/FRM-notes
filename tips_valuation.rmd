@@ -1,0 +1,39 @@
+# Valuation and Risk Models
+
+Alex Dou
+
+
+## 时间序列
+* 平稳时间序列：常数均值，自协方差和自相关系数只依赖于时间的平移长度而和时间的起始止点无关
+* 白噪声的性质：纯随机性没有记忆，方差齐次即序列中每个变量方差相等
+
+## Fix-income
+* 使用连续复利计算公式计算，可以减少计算器按键次数
+* 注意付息频率，半年一次需要除以2，同时计算得到的半年值乘以2得到年化数值，一定要注意。
+* 要计算某个时点t的价值，先把所有的现金流折现到0时刻，得到P0，再将P0向前计算t时刻价值，得到Pt
+* Clean price = dirty price - accrued interest
+* zero-coupon bond 的 duration 比相同 maturity 的 coupon bond 要大
+* 短期限C-STRIPS溢价，长期限C-STRIPS折价
+* Annualized swap rate 计算方法类似于par rate
+* 计算利率变化对债券价格的影响时，可以直接在计算器上修改I/Y，然后计算P-和P+。当利率变化很小时，只需要计算其中一个即可，并与P0相减。计算Duration也可以用此方法。
+* 用计算器计算Effective Duration快
+* 两个债券duration相同，则当前价格较高的债券，受利率变化的影响更大
+* 组合的duration是资产duration的加权和，权重为资产市值比
+* 用多只债券合成一只债券，使得组合的duration与目标债券的duration相同，求得组合中债券的权重，再根据权重计算组合的convexity
+* Negative duration, 债券价格随着利率同向变化。普通债券及其call option都是positive duration, 债券的put option是negative duration. 长期限的Interest-only STRIPS价格随着利率降低而降低，也是negative duration，所以基于它的put option是positive duration.
+* Duration: Maturity+, YTM-, Coupon Rate-, Coupon Frequency-
+* Convexity: Maturity+, Coupon-, YTM-
+
+*
+
+## Futures
+* 欧洲美元期货一个基点25美元；一份国债期货1000份国债；美国标普500股指期货每点250美元,纳斯达克100指数期货每点100美元
+
+## Options
+* 看清楚是American 还是European
+* BSM 模型假设之一： 资产价格服从lognormal且连续
+* 二叉树的步长可以大于1年，要注意审题
+* 一笔意外的现金股息会减少除息日的股票价格
+
+
+* 互换期限通常比较长

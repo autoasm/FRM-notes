@@ -1,0 +1,327 @@
+---
+title: "Quantitative Analysis"
+author: "Alex Dou"
+date: "March 10, 2019"
+output:
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+### Probabilities
+
+$$ P(AB) = P(B|A)P(A) = P(A|B)P(B) $$
+
+$$ P(A \cup B) = P(A) + P(B) - P(A \cap B)  $$
+
+$$  P(A_1 \cup A_2 \cup A_3) = P(A_1) + P(A_2)+P(A_3)-P(A_1 \cap A_2) - P(A_2 \cap A_3) - P(A_1 \cap A_3) + P(A_1 \cap A_2 \cap A_3) $$
+
+----
+
+### Basic Statistics
+
+$$ \overline{X}  = \frac{\sum_{i=1}^{n}{x_i}}{n}  $$
+
+
+$$ G=(\prod_{i=1}^{n}{x_i})^{\frac{1}{n}}  $$
+
+$$ E(X) = \sum{p_ix_i}  $$
+$$ E(cX) = cE(X)  $$
+
+
+$$ E(X+Y) = E(X) + E(Y)  $$
+
+
+If XY are independent
+$$ E(XY) = E(X)E(Y)  $$ 
+
+### Variance
+
+$$ Var(X) = E[(X-\mu)^2] =  E(X^2) - E(X)^2 $$
+
+$$ Var(constant) = 0  $$
+
+$$ Var(X+c) = Var(X)  $$
+
+$$ Var(aX+C) = a^2Var(X)  $$
+
+
+$$ Var(aX+cY) = a^2Var(X) + c^2Var(Y)  $$
+
+
+$$ Var(aX\pm bY) = a^2Var(X) + b^2 Var(Y) \pm 2ab \rho_{xy} \sigma_x \sigma_y $$
+
+
+$$ Cov(ax+by, cx+dy)=acVar(x)+bdVar(y) + (ab+cd)Cov(x,y)$$
+
+$$ Var(X+Y) = Var(X) + Var(Y) + 2Cov(X,Y)  $$
+
+$$ Var(X-Y) = Var(X) + Var(Y) - 2Cov(X, Y)  $$
+
+$$ Cov(x,y) = \frac{\sum{[X_i-E(X)][Y_i-E(Y)]}}{n-1}  $$
+
+$$ \sigma=\sqrt{\frac{\sum{[X_i-E(x)]^2}}{n-1}} $$
+
+$$ \rho = \frac{Cov(X, Y)}{\sigma_x\sigma_y} $$
+
+
+$$ Skewness = \frac{E[{X-\mu}^3]}{\sigma^3}  $$
+
+$$ kurtosis = \frac{E[{X-\mu}^4]}{\sigma^4}  $$
+
+#### Positive Skew/Right Skew
+
+$$ Mode < Median < Mean  $$
+
+#### Negative Skew/Left Skew
+
+$$ Mode > Median > Mean  $$
+
+$$ ExcessKurtosis = kurtosis - 3  $$
+
+----
+
+### Distributions
+
+#### Binomial Distribution
+
+$$ p(k) = C_n^kp^k(1-p)^{n-k}  $$
+
+$$ E(X) = np  $$
+
+$$  Var(X) = np(1-p) $$
+
+#### Poisson Distribution
+
+$$ p(k) = \frac{\lambda^ke^{-\lambda}}{k!}  $$
+
+
+$$ E(X) = Var(X) = \lambda  $$
+
+#### Normal Distribution
+
+$$ Interval_{0.9} = (-1.65, 1.65)  $$
+
+$$ Interval_{0.95} = (-1.96, 1.96)  $$
+
+$$ Interval_{0.98} = (-2.33, 2.33)  $$
+
+$$ Interval_{0.99} = (-2.58, 2.58)  $$
+
+$$ z=\frac{x-\mu}{\sigma}  $$
+
+$$1-N(x) = N(-x) $$
+
+### Chi-squared Distribution
+
+$$  \chi_{n-1}^2=\frac{(n-1)s^2}{\sigma^2}  $$
+
+### F distribution
+
+$$ F=\frac{S_1^2}{S_2^2}  $$
+
+
+$$ F=\frac{\chi^2}{n}$$
+
+### Bayesian Analysis
+
+$$ P(B|A)P(A) = P(A|B)P(B)  $$
+
+### Confidence Intervals
+
+$$ \sigma_{\overline{x}}  = \frac{\sigma}{\sqrt{n}}$$
+
+$$\overline{X} \pm Z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}}$$
+
+$$ Z_{0.9} = 1.65  $$
+
+$$ Z_{0.95} = 1.96    $$
+
+$$ Z_{0.98} = 2.33  $$
+
+
+$$ Z_{0.99} = 2.58  $$
+
+$$\overline{X} \pm t_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}}$$
+
+### Hypothesis Testing
+
+$$ \alpha=P(Type1Error)  $$
+
+$$ PowerOfTest = 1-P(Type2Error)  $$
+
+#### The z-Test
+
+$$  z-statistic=\frac{\overline{x}-\mu_0}{\sigma/\sqrt{n}} $$
+
+#### The Chi-squared test
+
+$$ \chi_{n-1}^2 = \frac{(n-1)s^2}{\sigma_0^2} $$
+
+#### The F-Test
+
+$$ F=\frac{s_1^2}{s_2^2}  $$
+
+
+### Linear Regression
+
+$$ b_1 = \frac{Cov(X,Y)}{Var(X)}$$
+
+$$ b_0=\overline{Y}-b_1\overline{X}  $$
+
+$$ TSS=ESS+SSR $$
+
+$$  R^2 = \frac{ESS}{TSS}=1-\frac{SSR}{TSS}$$
+
+$$ \rho_{xy}=\sqrt{R^2}  $$
+
+$$SER=\sqrt{\frac{SSR}{n-k-1}}  $$
+
+$$R_a^2 = 1-[\frac{n-1}{n-k-1}(1-R^2)]$$
+
+$$ t=\frac{\hat{b}-b}{S_{\hat{b}}}  $$
+
+$$ df=n-k-1  $$
+
+$$ F=\frac{ESS/k}{SSR/(n-k-1)}  $$
+
+$$ F=\frac{1}{2} \frac{t_1^2+t_2^2-2\rho t_1 t_2}{1-\rho^2}$$
+
+$$ df_1=k  $$
+
+$$ df_2=n-k-1  $$
+
+### Modeling and forecasting trend
+
+$$ y_t=\beta_0+\beta_1t  $$
+
+$$ y_t=\beta_0+\beta_1t+\beta_2t^2$$
+
+$$ y_t=\beta_0e^{\beta_1t}  $$
+
+#### Assumptions
+
+| Type                | Assumption                    |
+|---------------------|-------------------------------|
+| OLE                 | E(residual)=0                 |
+| OLE                 | iid                           |
+| OLE                 | No outlier                    |
+| BLUE                | Homoskedasticity              |
+| Multiple Regression | No perfect multi-collinearity |
+
+$$ ln(y) = ln(\beta_0) + \beta_1t  $$
+
+$$ MSE=\frac{\sum{e_t^2}}{T}  $$
+
+$$ s^2=\frac{\sum{e_t^2}}{T-k}  $$
+
+### MA, AR, ARMA
+
+#### MA(1)
+$$ y_t=\epsilon_t+\theta\epsilon_{t-1}  $$
+
+#### AR(1)
+
+$$ y_t=\Theta y_{t-1} + \epsilon_t  $$
+
+#### ARMA
+$$y_t=\Theta y_{t-1}+\epsilon_t+\theta \epsilon_{t-1}$$
+
+
+|             | MA(1)         | AR(1)       |
+|-------------|---------------|-------------|
+| ACF         | Cut off       | Decay       |
+| PCF         | Decay         | Cut off     |
+| Stationary  | Y             | abs(theta) < 1 |
+| Invertible  | abs(theta) < 1 | Y           |
+
+----
+
+
+### Volatility
+
+$$ u_i=ln(\frac{S_i}{S_{i-1}})  $$
+
+
+$$ P(V>x) = Kx^{-\alpha}$$
+
+$$ ln[P(V>x)] = ln(K) - \alpha ln(x) $$
+
+
+#### ARCH
+
+$$ \sigma_n^2=\gamma V_L +  \sum_{i=1}^{m}{\alpha_i u_{n-i}^2}$$
+
+
+$$ \omega = \gamma V_L   $$
+
+#### EWMA
+
+$$ \sigma_n^2 = \lambda \sigma_{n-1}^2 + (1-\lambda)u_{n-1}^2 $$
+
+$$ w_i = (1-\lambda)\lambda^{i-1}$$
+
+#### GARCH
+
+$$ \sigma_n^2=\omega + \alpha u_{n-1}^2+ \beta \sigma_{n-1}^2$$
+
+$$ \omega = \gamma V_L  $$
+
+
+$$ \alpha+\beta+\gamma = 1  $$
+
+$$ \alpha+\beta <1 \Rightarrow \gamma>0  $$
+
+$$ V_L=\frac{\omega}{1-\alpha-\beta}  $$
+
+
+$$ \sigma_L=\sqrt{V_L} = \sqrt{\frac{\omega}{1-\alpha-\beta}}  $$
+
+$$ persistence=\alpha+\beta  $$
+$ $$
+
+
+### Correlation and Copulas
+
+$$ \rho_{xy} = \frac{Cov(x,y)}{\sigma_x \sigma_y}$$
+
+$$ Cov(x, y) = \rho_{xy} \sigma_x \sigma_y  $$
+
+#### EWMA
+
+$$ Cov_n = \lambda Cov_{n-1} + (1-\lambda)X_{n-1}Y_{n-1}  $$
+
+
+$$ \sigma_n^2 = \lambda \sigma_{n-1}^2 + (1-\lambda)X_{n-1}^2$$
+
+
+
+#### GARCH
+
+$$ Cov_n = \omega+\alpha X_{n-1}Y_{n-1} + \beta Cov_{n-1}$$
+
+
+
+$$ \omega^T \Omega \omega  \ge 0 $$
+
+
+$$\epsilon_1 = z_1$$
+$$ \epsilon_2 = \rho z_1+z_2\sqrt{1-\rho^2}  $$
+
+
+$$ U_i=a_iF+\sqrt{1-a_i^2}Z_i  $$
+
+#### Correlation Estimation
+
+$$ \rho_{xy,n} = \frac{Cov_n}{\sigma_{x,n}\sigma_{y_n}} $$
+
+$$ Cov_n = \lambda Cov_{n-1} + (1-\lambda)x_{n-1}y_{n-1}  $$
+
+$$ Cov_n = \omega + \alpha \mu_{x,n-1} \mu_{y,n-1} + \beta Cov_{n-1}    $$
+
+$$ \Delta xS= \Delta S  $$
+
+$$ \Delta P=\delta \Delta S + \frac{1}{2} \gamma {\Delta S}^2 = \delta \Delta x S+\frac{1}{2} \gamma S^2 {\Delta x}^2   $$

@@ -1,0 +1,84 @@
+---
+title: "Forwards and Futures Formula Sheet"
+author: "Alex Dou"
+date: "March 10, 2019"
+output:
+  pdf_document: default
+---
+
+
+
+
+### Hedging
+
+$$ basis=S_t-F_t  $$
+
+$$ h^* = \rho\frac{\sigma_S}{\sigma_F}  $$
+
+$$ N^* = h^*\frac{V_A}{V_F}  $$
+
+$$ N^* = \beta\frac{V_P}{V_F}  $$
+
+$$ N^*=(\beta^*-\beta)\frac{V_P}{V_F}  $$
+
+### Standard form
+
+$$ F=Se^{rt}  $$
+
+### With dividend
+
+$$ F_0=S_0e^{(r-q)T}  $$
+
+
+### Exchange Futures
+
+$$ F_0=S_0e^{(r-r_f)T}  $$
+
+
+### With storage cost
+
+$$ F_0=(S_0+U)e^{rt}  $$
+
+$$ F_0=S_0e^{(r+u)T}  $$
+
+### With yield rate
+
+$$  F_0=S_0e^{(r+u-y)T} $$
+
+### With cost of carrying
+
+$$ F_0=S_0e^{cT}  $$
+
+$$ F_0=S_0e^{(c-y)T}  $$
+
+### Interest Futures
+
+$$ P=\frac{360}{n}(100-y)  $$
+
+### Cheapest-to-deliver bond
+
+$$ CTD = min(B_{quoted} -F_{quoted}CF)   $$
+
+
+### Euro-Dollar Future
+
+$$ F_{eurodollar} = 10000\times[100-0.25(100-Z)]  $$
+
+$$ Value(1bp) = 25USD  $$
+
+### Duration hedge
+$$ N = -\frac{V_p D_p}{V_f D_f}$$
+
+$$ N = -\frac{V_p D_p}{V_f D_f} \beta$$
+
+
+### The value of forward
+
+$$ V_{forward} = S_0 (F-K)e^{-rt}  $$
+
+
+
+
+
+
+

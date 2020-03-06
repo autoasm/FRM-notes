@@ -1,0 +1,279 @@
+---
+title: "Options Formula Sheet"
+author: "Alex Dou"
+date: "March 10, 2019"
+output:
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+### Future Price
+
+$$ F=Se^{rt}  $$
+
+### Payoff
+
+$$ P_{long call}=max(S_T-K,0)$$
+
+$$ P_{short call} = -max(S_T-K, 0) = min(K-S_T, 0)$$
+
+$$ P_{long put} = max(K-S_T, 0)  $$
+
+$$ P_{short put} = -max(K-S_T, 0) = min(S_T-K, 0) $$
+
+### Price Limit
+
+#### Call option
+$$S_t - ke^{-rt} \le c_t \le  C_t \le S_t$$
+
+$$ c \ge  max(S_0-D-Ke^{-rt}, 0) $$
+
+#### Put option
+
+$$Ke^{-rt} -S_t \le p_t \le P_t \le K $$
+
+$$S_0-K \le C-P \le S_0 -Ke^{-rt}$$
+
+$$ p \ge max(D+Ke^{-rt}-S_0, 0)  $$
+
+### Parity
+
+$$ c+Ke^{-rT} = p+ S_0  $$
+
+$$ c+D_0+Ke^{-rT} = p+ S_0   $$
+
+$$ S_0-D-K \le C-P \le S_0-Ke^{-rt} $$
+
+$$ P_{option} = V_{intrinsic} + V_{time}  $$
+
+### Delta
+
+$$ S_u\Delta{} -C_u= S_d\Delta{}-C_d $$
+
+$$ \Delta = \frac{C_u-C_d}{S_u-S_d} $$
+
+
+$$ \%\Delta{}= \frac{\Delta{}\%C}{\Delta{}\%S}  $$
+
+----
+
+### Risk-neutral probabilities
+
+$$ u=\frac{S_u}{S_0}  $$
+
+$$ d=\frac{S_d}{S_0} $$
+
+
+$$ S_0=P_u S_u+(1-P_u)S_d  $$
+
+$$ u=e^{\sigma\sqrt{t}} $$ 
+
+$$ u=e^{-\sigma\sqrt{t}} $$ 
+
+
+$$ \pi_u  = \frac{e^{rt}-d}{u-d}$$
+
+$$u=e^{\sigma\sqrt{t}}$$
+
+
+$$d=e^{-\sigma\sqrt{t}}$$
+
+$$d = \frac{1}{u}$$
+
+----
+
+### Options on stock with a continuous divided yield q
+
+$$ \pi_u=\frac{e^{(r-q)t}-d}{u-d}$$
+
+----
+
+### Options on currencies with the domestic risk-free rate and foreign risk-free rate
+
+
+$$ \pi_u=\frac{e^{(r_{dc}-r_{fc})t}-d}{u-d}$$
+
+
+----
+
+
+### Options on futures
+
+$$ \pi_u=\frac{1-d}{u-d} $$
+
+### Historical volatility
+
+$$ \sigma_T=\sigma_1\sqrt{T}  $$
+
+$$ \sigma_{year} = \sigma_{day} \sqrt{252}  $$
+
+----
+
+### BSM Model
+
+
+$$ Call=S_0N(d_1)-Ke^{-rT}N(d_2)  $$
+
+$$ Put=Ke^{-rT}[1-N(d2)]-S_0[1-N(d_1)]  $$
+
+With dividend
+
+$$ S=S_0-PV(d) $$
+
+$$ d_1=\frac{ln(\frac{S_0}{K})+(r+\frac{\sigma^2}{2})T}{\sigma\sqrt{T}}  $$
+
+$$ d2=d1-\sigma\sqrt{T} =\frac{ln(\frac{S_0}{K})+(r-\frac{\sigma^2}{2})T}{\sigma\sqrt{T}} $$
+
+$$ \Delta_c=N(d1) $$
+
+$$ \Delta_p=1-N(d1) = N(-d1)  $$
+
+$$ N(-d1) = 1-N(d1)  $$
+
+----
+
+### American Option
+
+#### Exercise Call Option
+$$ S-K  > S-D-Ke^{-r(T-t)}$$
+
+----
+
+### Warrant
+
+####The stock price after exercise
+
+$$ \frac{S_tN+KW}{N+W}  $$
+
+
+#### The Payoff to an option holder
+
+
+$$ \frac{N}{N+W}Call  $$
+
+#### Stock price will decline by
+
+$$ \frac{W}{N+W}Call  $$
+
+----
+
+### Delta
+
+#### Standard
+$$ \Delta{}_{call} = \frac{\partial C}{\partial s}  = N(d1)$$
+
+$$ \Delta{}_{put} = \frac{\partial P}{\partial s}  = N(d1)-1  $$
+
+![Delta](images/delta.png)
+
+#### With dividend 
+
+$$ \Delta{}_{call} = \frac{\partial C}{\partial s}  = e^{-qT}N(d1)$$
+
+$$ \Delta{}_{put} = \frac{\partial P}{\partial s}  = e^{-qT}[N(d1)-1]  $$
+
+
+### Strategies
+
+#### Bull spread
+
+Long low, Short high
+
+$$Bullspread=C_{k1}-C_{k2} = P_{k1} - P_{k2} $$
+
+#### Bear spread
+
+Long high, short low
+$$ Bearspread = -P_{k1}+P_{k2} = -C_{k1} + C_{k2}  $$
+
+
+#### Butterfly spread
+
+Long high low, short middle
+$$ Butterflyspread = C_{k1} - 2C_{k2} + C_{k3} = P_{k1} -2P_{k2} + P_{k3}  $$
+
+
+#### Calendar spread
+
+Short short, long long
+
+
+#### Straddle
+
+$$ Straddle = C_k+P_k $$
+
+#### Strangle
+
+$$ Strangle = C_{k1} + P_{k2}  $$
+
+
+----
+
+### Delta of other financial instruments
+
+
+$$ \Delta{}_{stock} = 1 $$
+
+$$ \Delta{}_{forward} = 1 or e^{-qT} $$
+
+
+
+$$ \Delta{}_{future} = e^{rt} or  e^{(r-q)t}  $$
+
+
+$$ \Delta{}_{portfolio} = \sum_{i=1}^{n}{w_i\Delta{}_i}  $$
+
+----
+
+### Delta Hedging
+
+$$ N_{call} = -\frac{N_{stock}}{\Delta{}_{call}}  $$
+
+$$ N_{put} = -\frac{N_{stock}}{\Delta{}_{put}}  $$
+
+----
+
+### Gamma
+
+$$ \Gamma = \frac{\partial^2 C}{\partial s^2}  $$
+
+![Gamma](images/gamma.png)
+
+$$ \Gamma_{long} > 0   $$
+
+$$ \Gamma_{stock} = 0 $$
+
+$$ \Gamma_{forward} =0 $$
+
+### Theta
+
+$$ \theta=\frac{\partial C}{\partial t}  $$
+
+
+![Theta](images/theta.png)
+
+
+### Vega
+
+$$ vega = \frac{\partial C}{\partial \sigma}  $$
+
+
+![Vega](images/call_vega.png)
+
+
+
+### Rho
+
+$$ \rho = \frac{\partial C}{\partial r} $$
+
+![Call Rho](images/call_rho.png)
+
+
+![put Rho](images/put_rho.png)
+
+
+

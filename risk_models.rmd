@@ -1,0 +1,151 @@
+---
+title: "Risk Models  Formula Sheet"
+author: "Alex Dou"
+date: "March 10, 2019"
+output:
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+### Coherent Risk Measures
+
+#### Monotonicity
+
+$$ A \ge B\Rightarrow \rho(A) \le \rho(B)   $$
+
+#### Subadditivity
+
+$$ \rho(A+B) \le \rho(B) + \rho(B)  $$
+
+#### Positive Mogogeneity
+
+$$ \rho(xA) = x\rho(A)  $$
+
+#### Translation Invariance
+
+$$ \rho(A+cash) = \rho(A) - cash  $$
+
+### Value at Risk
+
+$$ VaR_{derivatives} = VaR_{underling}\times \Delta{}  $$
+
+### Model-building VaR
+
+$$ VaR=N(X)\sigma{}\sqrt{T}P  $$
+
+$$ \sigma_{xy}=\sqrt{\sigma_x^2 + \sigma_y^2 + 2\rho \sigma_x \sigma_y}$$
+
+
+$$ \sigma_B=DB\sigma_y  $$
+
+$$ VaR_{xy} = \sigma_{xy}\sqrt{T}N^{-1}(1-\alpha)=\sqrt{\sigma_x^2 + \sigma_y^2 + 2\rho \sigma_x \sigma_y}\sqrt{T}N^{-1}(1-\alpha)$$
+
+
+### Delta-normal approach
+$$ VaR_{option} = |\Delta{}|VaR_{stock}  $$   
+
+
+
+### Delta-gamma approach
+$$ VaR_{bond} = |-DP|VaR_y-\frac{1}{2}C\times P\times{VaR_y}^2  $$
+
+
+$$ VaR_{option} = |\Delta{}|VaR_{stock}-\frac{1}{2}\Gamma{}\times {VaR_{stock}}^2$$
+
+
+### Credit Risk Components
+ 
+$$ Rate_{loss} = 1- Rate_{recovery}  $$
+
+$$ LGD=1-RR  $$
+
+$$ E(loss) = EA *Rate_{default}\times Rate_{loss}  $$
+
+
+$$ EL=EAD*PD*LGC  $$
+
+### Adjusted Exposure
+
+$$ Exposure^* = Outstandings +  \alpha (Commitments - Outstandings)    $$
+
+$$ Exposure^* = Outstandings +  UGD (Commitments - Outstandings)    $$
+
+
+### Unexpected Loss
+
+$$ Loss_{unexpected} = EA\sqrt{P_{default}\sigma_{LR}^2+LR^2\sigma_{PD}^2}  $$
+
+$$ \sigma_{pd}^2 = P_d(1-P_d)  $$
+
+$$ \sigma_{EDF}^2 = EDF(1-EDF)  $$
+
+$$PD=EDF$$
+
+
+### Expected loss of a portfolio
+
+$$ EL_p = \sum_{i=0}^{n}{EL_i} = \sum_{i=0}^{n}{EA_i \times PD_i \times LR_i} $$
+
+
+### Unexpected loss of a portfolio
+
+
+$$ UL_p=\sqrt{ \sum_j{\sum_i\rho_{ij}UL_iUL_j}   }  $$
+
+
+### Unexpected loss of two assets
+
+$$ UL_{12} = \sqrt{UL_1^2 + UL_2^2 + 2\rho_{12}UL_1UL_2}   $$
+
+### Unexpected loss contribution
+
+$$ UL_p = \sum_iUL_i  $$
+
+
+$$ ULC_i = \frac{UL_i\sum_jULj\rho_{ij}}{UL_p}  $$
+
+### ULC of two assets
+
+
+$$ ULC1=\frac{UL_1^2+\rho_{12}UL_1UL_2}{UL_p}  $$
+
+$$ ULC2=\frac{UL_2^2+\rho_{12}UL_1UL_2}{UL_p}  $$
+
+
+### Economic capital for credit risk
+
+
+$$ Capital_p = UL_p\times CM $$
+
+### Basic indicator approach (BIA)
+
+$$ K_{BIA}=(\frac{GI_1+GI_2+GI_3}{3})\alpha  $$
+$$  \alpha = 15\% $$
+
+### Standardized approach (SA)
+
+$$ K_{SA} = \frac{\sum_{t=1}^{3}{max(\sum_{i=1}^{8}{GI_i\beta_i}, 0)}}{3}  $$
+
+### Poisson Distribution
+
+$$ P(k) = \frac{(\lambda{}T)^k}{k!}e^{-\lambda{}T}  $$
+
+### Scale adjustment
+
+$$ Loss_a=Loss_b(\frac{Revenue_a}{Revenue_b})^{0.23}  $$
+
+### Power Law
+
+$$ P(v>x)=Kx^{-\alpha}  $$
+
+### Prepayment
+
+$$ Prepayment = Payment_{actual} - Payment_{scheduled}  $$
+
+$$ SMM = \frac{Prepayment}{Balance_0 - Payment_{scheduled}}  $$
+
+$$ (1-SMM)^{12} = 1-CPR $$
