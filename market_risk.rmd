@@ -1,0 +1,194 @@
+---
+title: "FRM Market Risk Management"
+author: "Alex Dou"
+date: "October 26, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## VaR and Risk Measurement
+
+* Profit/Loss Data
+
+$$ P/L_t = P_t+D_t-P_{t-1}  $$
+
+* Arithmetic return data
+
+$$ r_t=\frac{P_t+D_t-P_{t-1}}{P_{t-1}} = \frac{P_t+D_t}{P_{t-1}} -1  $$
+
+* Geometric return data
+
+$$ R_t = ln(\frac{P_t+D_t}{P_{t-1}}) = ln(1+r_t)$$
+
+### VaR
+
+#### Parametric Approach
+##### Normal VaR
+
+$$ -(u_{PL}-Z_{\alpha} \sigma_{PL}) $$
+
+##### Lognormal VaR
+
+$$ (1-e^{u_R-z_{\alpha} \sigma_R})P_{t-1}$$
+
+##### Standard Error of VaR
+
+* Standard Error: The standard deviation of a random variable.
+
+$$ \frac{\sqrt{\frac{p(1-p)}{n}}}{f(q)}  $$
+
+##### Quantile-Quantile plots
+![QQ Plot](images/qqplot.JPG)
+
+#### Non-parametric Approach
+* Sample Number
+
+$$ n \times \alpha +1  $$
+
+##### Bootstrap
+* 有放回重复抽样
+
+
+##### Age-weighted historical simulation (BRW)
+
+
+
+$$ \omega_1 = \frac{1-\lambda}{1-\lambda^n}  $$
+
+$$ \omega_1 = \frac{\lambda^{i-1}(1-\lambda)}{1-\lambda^n}  $$
+
+$$ 0 \le \lambda  \le 1  $$
+
+
+##### Volatility-weighted historical simulation (HW)
+
+$$r^*_{t,i} = (\frac{\sigma_{T,i}}{\sigma_{t,i}})r_{t_i}  $$
+
+
+### Backtesting VaR
+
+#### Failure Rate
+
+$$ \frac{N_{exception}}{T}  $$
+
+#### Classic testing framework
+
+$$z = \frac{X-u}{\sigma} = \frac{x-np}{\sqrt{p(1-p)n}}$$
+
+* x, the number of exceptions
+
+#### Unconditionial coverage model
+* H0: The model is correctly calibrated
+* Reject H0 with 95% confidence level
+$$ LR_{uc} > 3.84  $$
+
+
+#### Conditional coverage model
+* H0: The model is correctly calibrated
+* Reject H0 with 95% confidence level
+$$ LR_{cc} = LR_{uc} + LR_{ind}  $$
+$$ LR_{cc} > 5.991  $$
+
+#### Type 1 and Type 2 Error
+
+$$ Type_1 = \alpha$$
+
+$$ Type_2 = \beta $$
+$$ PowerOfTest = 1-\beta  $$
+
+
+## Correlations
+
+#### Correlations in financial investment
+
+$$ r_p = w_1 r_1 + w_2 r_2  $$
+
+$$ \rho_p = \sqrt{w_1^2 \sigma_1^2+ w_2^2 \sigma_2^2 + 2w_1 w_2Cov_{12}}  $$
+
+$$ Cov_{xy} = \frac{\sum{(x_i-u_x)(y_i-u_y)}}{n-1}  $$
+
+$$ \rho_{xy} = \frac{Cov_{xy}}{\sigma_x \sigma_y}  $$
+
+#### Multi-assets options/Rainbow options
+* Options on the better of two
+
+$$ max(s_1, s_2)  $$
+
+* Options on the worse of two
+
+$$ min(s_1, s_2)  $$
+
+* Call on the max of two
+
+$$ max[0, max(s_1, s_2) - k]  $$
+
+* Exchange option
+
+$$ max(0, s_2 - s_1) $$
+
+* Spread call option
+
+$$ max[0, (s_2-s_1) - k]  $$
+
+#### Correlation swap
+
+$$ Amount_{national}(\rho_{realized} - \rho_{fixed})  $$
+
+$$ \rho_{realized} = \frac{2}{n^2-n} \sum_{i>j} {\rho_{i,j}}  $$
+
+
+#### Joint probability of default
+
+$$ P(AB) = \rho_{AB} \sqrt{PD_A(1-PD_A)PD_B(1-PD_B)} + PD_A PD_B  $$
+
+#### Mean reversion and autocorrelation
+
+##### n-period lag Autocorrelation
+
+$$ AC(\rho_t, \rho_{t-n}) = \frac{conv(\rho_t, rho_{t-n})}{\sigma(\rho_t) \sigma{\rho_{t-n}}}  $$
+
+##### Mean reversion
+
+$$ S_t-S_{t-1} = a(u-S_{t-1}) \Delta t + \sigma_s \epsilon \sqrt{\Delta t} \approx a(u-S_{t-1})  $$
+
+
+#### Correlation and Correlation volatility
+TBD
+
+### Statistical Correlation Models
+#### The Pearson correlation
+
+$$ Cov_{xy} = \frac{\sum{(x_i-u_x)(y_i-u_y)}}{n-1}  $$
+
+$$ \rho_{xy} = \frac{Cov_{xy}}{\sigma_x \sigma_y}  $$
+
+#### The Spearman rank correlation
+
+$$ \rho_s = 1- \frac{6 \sum{ d_i^2}}{n(n^2-1)}  $$
+
+$$ d_i = rank(x_1) -rank(y_i)  $$
+
+#### The Kendall's tau
+
+$$ \tau = \frac{n_c-n_d}{n(n-1)/2}  $$
+
+* Concordant pairs
+
+$$ sign(x_i - x_j) = sign(y_i - y_j)  $$
+
+* Discordant pairs
+
+$$ sign(x_i - x_j) = -sign(y_i - y_j)  $$
+
+#### Gaussian Copula
+
+$$ Probability = N(quantile)$$
+
+$$ Quantile = N^{-1}(Probability)  $$
+
+## Term structure models of interest rates
+
+## Other related topics

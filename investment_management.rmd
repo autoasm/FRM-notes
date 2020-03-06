@@ -1,0 +1,183 @@
+---
+title: "FRM Investment Management"
+author: "Alex Dou"
+date: "November 3, 2019"
+output: html_document
+---
+
+### Factor
+
+#### CAPM
+
+$$ E(r_i) = r_f + \beta_i (r_m - r_f)  $$
+
+#### Multifactor models
+
+$$ E(r_i) = r_f + \sum{\beta_i (r_m - r_f)}  $$
+
+### Alpha
+
+#### Active Management
+
+* Excess return 
+
+$$ r^{ex}_t  = r_t- r^{bmk}_t $$
+
+* Grinold fundamental low
+
+$$ IR \approx IC \sqrt{BR}  $$
+
+### Portofolio Construction
+
+#### Refining alphas
+$$ \alpha = Volatility \times IC \times Score $$
+
+#### Active Risk aversion
+
+$$ \lambda_A = \frac{IR}{2\sigma_{\alpha}}  $$
+
+$$ Utility = \alpha_p - \lambda_A {\sigma_{\alpha}}^2  $$
+
+#### Transaction costs
+
+$$ MCVA_n = \alpha_n - 2 \lambda_A \sigma_{\alpha} MCAR_n  $$
+
+* No trade region
+
+$$ -SC_n \le MCVA_n \le PC_n  $$
+
+#### Portofolio VaR measures
+
+$$ VaR=V Z_c \sigma  $$
+
+$$VaR_i = Z_c \sigma_i V_i = Z_c \sigma_i w_i V_p    $$
+
+$$ MVaR_i = \frac{\beta_i VaR_p}{V_p} $$
+
+$$ VaR_{c1} = VaR_{c2} \frac{Z_{c1}}{Z_{c2}}  $$
+
+$$ VaR_p = Z_c \sigma_p V_p = \sqrt{VaR^2_1 + VaR^2_2 + 2 VaR_1 VaR_2 \rho_{12}}  $$
+
+#### VaR tools
+##### Marginal VaR
+
+$$ MVaR_i = Z_c \frac{Cov(r_i, r_p)}{\sigma_p} = Z_c \sigma_p \beta_i = \frac{VaR_p \beta_i}{V_p}  $$
+
+##### Incremental VaR
+
+$$ IVaR_a = VaR_{p+a} - VaR_p $$
+
+##### Component VaR
+
+$$ CVaR_i = MVaR_i V_i = MVaR_i w_i V_p = VaR_p \beta_i w_i $$
+
+$$ CVaR_i \% = \ frac{CVaR_i)}{VaR_p} = w_i \beta_i  $$
+
+#### Risk Management
+
+##### Global Minimal
+
+* Lower a portfolio VaR
+
+$$\forall i, j  MVaR_i = MVaR_j  $$
+
+$$\forall i, j  \beta_i = \beta_j  $$
+
+
+##### Optimal portfolio
+* Maximize the Sharpe ratio with VaR of the portfolio
+
+$$  \frac{r_p - r_f}{VaR_p} $$
+
+$$ \frac{r_i - r_f}{MVaR_i} =  \frac{r_j - r_f}{MVaR_j}  $$
+
+$$ \frac{r_i - r_f}{\beta_i} =  \frac{r_j - r_f}{\beta_j}  $$
+
+#### Surplus
+
+$$ Surplus = Assets - Liabilities  $$
+
+$$  \Delta Surplus = \Delta Assets - \Delta Liabilities = r_a A - r_l L $$
+
+$$ r_s = r_a - \frac{L}{A}r_l  $$
+
+
+$$ \Delta P \% = -D \Delta y  $$
+
+$$ \Delta P = D \Delta y P_0  $$
+
+$$ SaR = |E(S) - Z_c \sigma_s |   $$
+
+$$ E(S_t) = S_t \pm Z_c \sigma_s  $$
+
+$$ \sigma_{surplus} = \sqrt{A^2 {\sigma_A}^2 + L^2 {\sigma_L}^2 - 2AL \sigma_A \sigma_L \rho } $$
+
+#### Risk budgeting
+
+$$w_i = \frac{IR_i/TE_i}{IR_p/TE_p} = \frac{\alpha_i/{TE_i}^2}{\alpha_p/{TE_p}^2}$$
+
+$$ \sum{w_i} \le 1  $$
+
+* The residual weight is allocated to the index
+
+### Risk monitoring and performance measurement
+
+#### Liquidity Duration
+
+$$ LD_i = \frac{Q_i}{0.15 V_i} $$
+
+$$ \alpha = r_p - r_b  $$
+
+#### Return calculation
+
+##### Time-weighted returns (geometric average)
+
+$$ 1+r_g = ({\prod{1+r_i}})^{\frac{1}{n}}  $$
+
+##### Dollar-weighted returns:  IRR
+
+$$ PV(out_flow) = PV(in_flow) $$
+
+$$ \sum_{i=0}^n{\frac{CF_i}{(1+r_{dw})^i}} =  0 $$
+
+#### Risk-adjusted performance measures
+
+* Sharpe Ratio
+
+$$ \frac{r_p- r_f}{\sigma_p}  $$
+
+
+* Treynor ratio
+
+$$ \frac{r_p-r_f}{\beta_p}  $$
+
+* Information Ratio
+
+$$ \frac{\alpha_p}{\sigma(\alpha_p)}  $$
+
+#### Market timing
+
+* No market timing
+
+$$ r_p - r_f = a+b(r_m - r_f) +e_p  $$
+
+* Treynor and Mazuy
+
+$$ r_p - r_f = a+b(r_m - r_f) + c(r_m - r_f)^2 + e_p  $$
+
+* Henriksson and Merton
+
+$$ r_p - r_f = a+b(r_m - r_f) + c(r_m - r_f)D + e_p  $$
+
+#### Performance attribution
+
+$$ (W_{Pi}-W_{Bi})r_{Bi} + W_{Pi}(r_{Pi} - r_{Bi}) = W_{Pi} r_{Pi} - W_{Bi}r_{Bi}  $$
+
+* Contribution from asset allocation
+
+$$ (W_{Pi}-W_{Bi})r_{Bi} $$
+
+* Contributio from security selection
+
+ $$ W_{Pi}(r_{Pi} - r_{Bi}) $$
+

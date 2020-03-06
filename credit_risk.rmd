@@ -1,0 +1,473 @@
+# Credit Risk Measurement and Management
+
+###  Measurement of Credit Risk
+* Expected Loss
+
+$$ EL=PD \times LGD \times EAD $$
+
+* LGD and Recovery Rate
+
+$$ LGD=1-RR $$
+
+* Unexpected Loss
+
+$$ UL = Credit VaR = WCL-EL $$
+
+### Classification of Credit Risk
+#### Default-mode Valuation
+* Default Risk
+* Recovery Risk
+* Exposure Risk
+
+#### Value-based Valuation
+* Migration Risk -- 评级下调
+* Spread Risk -- 信用价差增大
+* Liquidity Risk
+
+### Estimate PD
+
+#### Risk-neutral
+
+$$ P = \frac{100}{1+YTM}=(1-PD)\frac{100}{1+R_f}+PD\frac{100(1-LGD)}{1+R_f}  $$
+
+#### Real-world
+$$ P_* = \frac{100}{1+YTM}=(1-PD^*)\frac{100}{1+R_f+R_{premium}}+PD^*\frac{100(1-LGD)}{1+R_f+R_{premium}}  $$
+
+
+$$ PD^* \times LGD \approx YTM-R_f-R_{premium} $$
+
+#### Credit Spread
+$$ Credit spread \approx YTM-R_f - R_{premium}   $$
+
+$$ Credit spread = -\frac{1}{T-t}ln(\frac{D}{F})-r_f $$
+
+$$ CS = PD \times LGD = PD(1-RR) \Rightarrow PD = \frac{CS}{1-RR}  $$
+
+$$ PD=PD^*+ R_{premium} + Premium_{liquidity}$$
+
+* Credit spreads are observable and can be used to infer hazard rate.
+
+* 违约率+生存率=1
+
+### Change on PD
+#### 违约概率密度函数
+* 投资级先低后高
+* 投机级先高后低
+
+#### Risk-neutral Probability
+
+* Risk-neutral default probability = real-world default probability + Risk premium + Liquidity Premium
+
+
+#### Credit Spread Curve Mapping
+* 利率曲线期限相同
+* **i-spread** 如果期限不同，则插值
+* Credit spread = YTM-rf = PDxLGD
+*
+
+### **TODO** Models table here
+
+
+### Merton Model
+#### Assumption
+* Only one issue of equity and debt, zero coupon.
+* Default can only occur at the maturity date.
+* The value of the firm follows a lognormal distribution.
+* Risk free rate is constant
+* No need to adjust for liquidity
+
+#### Formula
+
+* S 为公司价值，K为债务价值
+* Call option 相当于股权
+* Put option 相当于债权
+
+$$ V_t = D_t+S_t  $$
+
+$$ S_t=max(V_t-F, 0)  $$
+
+
+$$ D_t=F-max(F-V_t,0)  $$
+
+$$ Call=S_0N(d_1)-Ke^{-rT}N(d_2)  $$
+
+* PV(EL): Long put option on firm's value
+
+$$ Put=Ke^{-rT}[1-N(d2)]-S_0[1-N(d_1)]  $$
+
+
+* With dividend
+
+$$ S=S_0-PV(d) $$
+
+$$ d_1=\frac{ln(\frac{S_0}{K})+(r+\frac{\sigma^2}{2})T}{\sigma\sqrt{T}}  $$
+
+$$ d2=DtD = d1-\sigma\sqrt{T} =\frac{ln(\frac{S_0}{K})+(r-\frac{\sigma^2}{2})T}{\sigma\sqrt{T}} \approx \frac{lnS-lnK}{\sigma} $$
+
+$$ PD= N(d2) $$
+* 投资级Naive, 投机级别 Merton
+
+#### Credit spread
+
+$$ CS=-[\frac{1}{T-t}]ln(\frac{D}{F})-r_f  $$
+
+* (T-t) --  remaining maturity
+* D -- Current value of debt
+* F -- Face value debt
+* r_f == risk-free rate
+
+#### Relationship
+|                 | Firm Value | Face value of debt | Time to Maturity | r  | sigma |
+|-----------------|------------|--------------------|------------------|----|-------|
+| Value of debt   | \+         | \+                 | \-               | \- | \-    |
+| Value of Equity | \+         | \-                 | \+               | \+ | \+    |
+
+----
+
+#### Limitation
+* Only to liquid, publicly traded names
+* A continuous need for calibration
+
+#### Subordinated debt
+**TODO**
+
+### KMV Model vs Merton
+* KMV不需要Lognormal假设
+* KMV Only 2 debt
+* KMV 模型需要真实的分布，需要查表
+
+#### Distance to default
+
+$$ DD=Z = \frac{A-K}{\sigma_A} $$
+
+
+$$ Z_{0.9} = 1.65  $$
+
+$$ Z_{0.95} = 1.96    $$
+
+$$ Z_{0.98} = 2.33  $$
+
+
+$$ Z_{0.99} = 2.58  $$
+
+
+### Default Intensity Models
+#### 伯努利分布
+
+#### 二项分布
+
+#### Poisson distribution
+
+#### Exponential distribution
+* Hazard rate, default intensity
+$$ \lambda  $$
+
+
+* Cumulative Default probability
+
+$$ P(t^* < t) = F(t) = 1-e^{-\lambda t}  $$
+
+* Cumulative survival probability
+
+$$ P(t^* \geq t) = 1-F(t) = e^{-\lambda t}  $$
+
+* Conditional default probability
+
+$$ P(t^*<t+\tau | t^*>t) = 1-e^{-\lambda \tau}  $$
+
+* Risk-neutral Hazard Rates
+
+$$ \lambda^* \approx \frac{Z_\tau}{1-RR}  $$
+
+#### 解题思路
+* 第N年的违约概率为前N年的违约概率-前N-1年的违约概率
+
+### Default Correlation
+
+$$ \rho_{12} = \frac{\pi_{12} - \pi_1 \pi_2}{\sqrt{\pi_1(1-pi_1)}\sqrt{\pi_2(1-\pi_2)}}  $$
+
+### Credit Scoring Models
+* 针对个人和小企业
+* A large number of small, low-value loans
+* 关注 Expected Loss
+* Cutoff score 使得False bad + false good 最小
+
+### Other Models
+* Structured approaches 关注自变量，Q宗
+* Reduced Form approaches 关注因变量，P宗
+* Logistic 回归不需要给定cutoff score, 直接输出概率
+
+$$ log(\frac{\pi}{1-\pi}) = \beta_0 + \beta_1x_1 + ... + \beta_k x_k $$
+
+$$ \pi = \frac{1}{1+e^{-( \beta_0 + \beta_1x_1 + ... + \beta_k x_k )}}$$
+
+### Credit Exposure
+* 未来有正现金流才有credit exposure
+
+#### Credit Exposure Metrics
+
+* **Expected Mark to Market(MtM)** is the expected value of a transaction at a given point in the future.
+* **Expected Exposure(EE)** is the amount that is expected to be lost if there is positive MtM and the counterpart defaults.
+* **Potential Future Exposure(PFE)** is an estimate of MtM value at a specific point in the future.
+* **Maximum PFE** is the highest PFE value over a stated time frame.
+* **Expected positive exposure(EPE)** is the average EE through time.
+* **Negative exposure** is the exposure from the counterparty's point of view.
+* **Effective EE** is equal to nondecreasing EE.
+* **Effective EPE** is the average of the effective EE.
+
+$$ Effective EE > Effective EPE > EPE  $$
+
+* **EE**只计算MtM>0, 若MtM<0, 则EE=0
+
+* **TODO** 表格及各种工具的exposure
+
+----
+
+### Counterparty Risk
+#### Counterparty Risk VS Lending Risk
+* Lending Risk 有固定的exposure， 单边风险
+* Counterparty risk 的exposure是动态的， 双边风险
+
+#### Wrong-way risk and Right-way Risk
+* Wrong-way risk, PD与exposure同向变动
+* Right-way risk, PD与expsure反向变动
+* 从自己赚钱的方向开始分析
+* 看主营业务
+
+----
+
+#### Netting
+
+##### Netting factor
+
+$$ NF=\frac{\sqrt{n+n(n-1)\rho}}{n}  $$
+
+* 同一主协议下可以多边netting；若无主协议，只能双边netting
+* netting factor取值（0，1), 越小说明组合netting效果越好
+* 如果合约exposure都为正，则netting不起作用
+* 有法律风险
+* Payment netting, 债务抵消，合约继续
+* Close-out netting, 合约终止，一般因为信用事件发生
+* netting降低资源占用
+* Walkaway features 一方出现信用风险，则另一方不支付欠款
+
+#### The Impact of netting
+* 降低exposure, 降低系统风险
+* 增加集中度风险
+* Improve RR
+
+#### CCP Loss Waterfall
+**TODO**
+
+----
+
+#### Collateral
+* Exposure 
+
+$$ Exposure = max(V_{portfolio}-V_{collateral}, 0) $$
+
+* Benefit
+
+$$ benefit = E_{no_collateral}-E_{with_collateral} $$
+
+* Credit Support Annex (CSA) 约定担保相关细节
+* 当超过Threshould + minimum transfer amount时，支付担保，担保按照rounding取整
+* haircut
+
+$$ haircut = \frac{V_{collateral}-V_{exposure}}{V_{collateral}}  $$
+
+* Volatility 越高，credit risk越高，maturity越长，liquidity越差，则haircut越高
+* 有rehypothecation风险，越特异的资产，再质押风险越高，因为不易获得
+* overcollateral 时 Exposure=0
+
+$$ round(max(V-threshould-MTA, 0))  $$
+
+
+
+----
+
+### Measurement of counterparty risk
+#### CVA
+* Credit Value Adjustment(CVA) is the expected value or price of counterparty credit risk. An adjustment to the risk-free value of a derivative to account for potential default.
+
+* Risky value = risk-free value - CVA
+* CVA 从头寸开始时计算一直到头寸终止
+* CVA 对手风险减值准备
+* CVA 有倾向于与少数优质对手交易的趋势，因此增加集中度风险
+
+$$ CVA \approx LGD \sum{d(t_i)EE(t_i)PD(t_{i-1}, t_i)}  $$
+
+$$ CVA \approx EPE \times Spread  $$
+* EPE = average EE
+
+#### Netting CVA
+* 组合的Netting CVA 小于CVA之和
+
+$$ CVA_{NS} \leq \sum{CVA_i}  $$
+
+#### Incremental CVA
+* 要不要新做一笔交易
+
+$$ CVA^{incremental}_{i} = CVA_{NS+i} -CVA_{NS}  $$
+
+#### Marginal CVA
+* 存量资产中每个资产的CVA
+* 组合CVA最小化
+* **Formula**
+
+#### DVA and Bilateral CVA
+* DVA 按照本方的模型算出的给对方的期望损失
+* DVA与对方算出的CVA不同，因为各自模型不同
+
+$$ BCVA=CVA+DVA $$
+
+### Portfolio Credit Risk
+* **TODO** formula
+
+#### Single-factor Model
+$$ r_i=\beta_im+\sqrt{1-\beta_i^2}\epsilon_i  $$
+
+$$ m \sim N(0,1) ,  \epsilon \sim N(0,1)  $$
+$$ r_i \sim N(\beta_im, 1-\beta_i^2)  $$
+
+$$ m=\frac{Z_{\alpha}(1-\sqrt{1-\beta^2})}{\beta}  $$
+
+$$ Z_{\alpha} = \frac{Z_{\alpha}-m \beta}{\sqrt{1-\beta^2}} $$
+
+* epsilong 公司个体风险
+
+#### Credit Risk Portfolio Models
+* **TODO** Table
+
+### Management of Credit Risk`
+
+### Credit Derivative
+#### First-to-Default CDS
+* 篮子中资产数量多，资产相关性低，则保费变贵
+
+#### Nth-to-Default CDS
+* 篮子中资产数量多，资产相关性高，则保费变贵
+
+#### Total Return Swap(TRS)
+* 通常是风险资产与无风险资产收益之间的互换
+
+#### Asset-backed Credit-linked Notes
+* 不出表，可以有杠杆，有部分担保
+* 初始本金作为担保品
+* 买CLN等于卖CDS，卖CLN等于买CDS
+
+#### Single-tranche CDO
+* Senior和Equity自持，junior卖给投资者
+
+### CDOs
+#### Synthetic CDO
+未出表，卖出CDS
+
+### Structured Credit Risk Product
+#### Covered bonds
+* YTM低，有担保，不出表
+
+### Classification of Structured Credit Product
+#### Static Pool
+* 底层资产不变
+
+#### Revolving Pools
+* 底层资产滚动更新，如信用卡
+
+#### Managed Pools
+* 主动管理底层资产
+
+* **TODO** Tree
+
+#### 信用增强
+* OC, overcollateralization account. 流入的正现金流先存入OC账户，等OC账户满了后再分给投资者。遇到信用事件， 则用OC账户支付。
+* 锁定期内的收益用于信用增强
+* Margin step-up 违约则利息越来越高
+* Excess spread is the difference between the cash flows collected and the payment made to all bondholders.
+
+#### Benefit
+
+**TODO** Benefit to investors and originator
+
+
+
+### 结构化产品信用特征
+
+#### Mortgate pass-through securities
+* Investors benefited from a new liquid asset class
+* Lenders benefited by removing interest rate risk off the balance sheet.
+* Investor receive cash flows based on the performance of pool
+* Most are agency MBS
+* Primary risk is prepayment risk
+* Debt service coverage ratio(**DSCR**)
+
+$$ DSCR=\frac{NetOperatingIncome}{TotalDebtPayment}  $$
+
+* Weighted average coupon(**WAC**)
+
+$$ WAC=\frac{\sum{F_ir_i}}{\sum{F_i}}  $$
+
+* Weighted average maturity(**WAM**)
+
+$$ WAM=\frac{\sum{F_it_i}}{V_i}  $$
+
+* Weighte average life(**WAL**)
+$$ WAL= \sum{\frac{a}{365}}PF(t)  $$
+
+
+#### Collateralized mortgate obligations (CMOs)
+* Different tranches have different maturity
+* The remaining tranches will receive interest only until upper tranches are retired.
+
+
+#### Structured credit products
+#### Asset-backed securities
+* ABS/MBS have diversity with thousands of obligors
+* CDO typically consists of less than 200 loans.
+
+##### Auto loan 
+* Loss curve
+* Absolute prepayment speed(APS)
+
+##### Credit card
+* Delinquency ratio
+* Default ratio
+* Monthly payment rate(MPR)
+
+#### PD and correlation
+* **TODO** Table !
+
+##### Drawback of default correlation-based credit portfolio framework
+* The number of required calculation
+* Do not fit well to some credit positions such as guarantees
+* Limited Data
+
+$$ Events=2^n   $$
+
+$$ Conditions=(n+1) + \frac{n(n-1)}{2}  $$
+
+#### Convexity
+| tranche | Convexity                        |
+|---------|----------------------------------|
+| Equity  | Convexity                        |
+| Junior  | 先convexity, 再negatve convexity |
+| Senior  | Negative convexity               |
+----
+
+#### Performance Measures for MBS
+* Debt service coverage ratio(DSCR) Net operation income/Debt payments
+* Weighted average maturity(WAM) ???
+* Weighted average life(WAL)
+* Prepayment Performance CRP 
+
+$$ CPR=1-(1-SMM)^{12} $$
+
+#### Payment Forecast
+**TODO**
+
+### Seven Frictions of Securitization Process
+**TODO**
+
+
+### Misc
+* CMO 优先偿还短duration投资者

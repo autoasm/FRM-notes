@@ -1,0 +1,111 @@
+---
+title: "FRM Operational and Integrated Risk Management"
+author: "Alex Dou"
+date: "October 13, 2019"
+output: html_document
+---
+
+## OpRisk Data an Governance
+
+### Event Category
+#### Execution, Delivery and Process Management
+* High frequency and low loss
+
+#### Clients, products, and business practices
+* Low frequency and high loss
+
+#### Business disruption and system failures
+
+#### Exteranl fraud
+
+#### Internal fraud
+
+#### Employment practices and workplace safety
+
+#### Damage to physial assets
+
+## Modelling Approaches
+
+### Basel II Models
+* BIA
+* SA
+* AMA
+
+#### Basic Indicator Approach (BIA)
+
+
+$$ K_{BIA} = \frac{\sum{GI_i \alpha}}{n}  $$
+
+* GI=annual positive gross income
+* n= number of years with positive income
+* alpha=0.15
+
+
+#### Standardized Aproach (SA)
+
+$$ \frac{\sum{GI_{1-8}\beta_{1-8}}}{3}  $$
+
+##### Alternative Standardized Approach
+
+$$ K_{RB} = \beta_{RB} \times  LA_{RB} \times m  $$
+
+* m=0.035
+
+#### Advanced Measurement Approache (AMA)
+* 1-year, 99.9% conficence level
+* 4 elements: Internal loss data, external loss data, Scenario analysis, business environment internal control factors
+
+##### Loss Distribution Approach(LDA)
+* Rely on internal losses
+* At least 3 years of loss data
+* Prons: Real historical data
+* Crons: Maybe to short to capture fat-tail event, data does not reflect the future
+* Modeling frequency: **Poisson distrubtion**
+* Modeling severity: **Lognormal distribution**
+* Combining 2 distrubutions: **Convolution, 99.9% certainty**
+
+### Extrme Value
+#### Generalized Extreme-Value Theory (GEV)
+* 块最大直方法，消除聚集效应
+* 3 Parameters: **xi** tail, **mu**, **sigma** 
+* Xi>0, **fat tail**, **Frechet distribution**
+* Xi=0, normal tail, Gumbel distribution
+* Xi<0, thin tail, Weibull distribtuion
+
+#### Peaks-over-threshold Approach (POT)
+* 2 parameters: **xi** tail, **beta** range
+* Needs to choose a threshold **u**
+* **u** 太低不能体现极值特征；太高则数据太少
+
+
+### Source of model risks
+* Distrubtion of underlying asset is stationary
+* Rate of return are normally distributed
+* Oversimplified models
+* Asuming pefect capital markets
+* Liquidity is assumed to be ample
+* Misapplied to a situation
+
+## Capital Planning and Framework
+### RAROC: Risk-adjusted return on capital
+#### Hurdle rate
+#### ARAROC
+
+## Liquidity and Leverage
+### Repo
+### Liquidity Risks
+#### Exogenous
+##### Constant Spread Approach
+##### Exogenous Spread Approach
+
+#### Endogenous
+##### Price elasticity
+##### Endogenous pricess approach
+
+#### Exogenous and Endogenous
+
+#### Liquidity Discount Approach
+
+#### Liquidity at Risk
+
+#### Sources of liquidity risks
